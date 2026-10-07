@@ -2,7 +2,7 @@ use zed_extension_api::{self as zed, Result};
 
 const LANGUAGE_SERVER_ID: &str = "mojo-lsp-server";
 const SERVER_NAME: &str = "mojo-lsp-server";
-const DEFAULT_ARGS: &[&str] = &["--skip-docstring-checks"];
+const DEFAULT_ARGS: &[&str] = &[];
 
 struct MojoExtension;
 
