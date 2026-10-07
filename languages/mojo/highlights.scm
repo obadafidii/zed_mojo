@@ -12,7 +12,7 @@
 ; Identifier naming conventions
 
 ((identifier) @type.builtin
- (#match? @type.builtin "^(AnyType|Bool|DType|Dict|DynamicVector|Error|FalseType|Float16|Float32|Float64|Index|Int|Int8|Int16|Int32|Int64|List|NoneType|Object|Optional|SIMD|Self|String|Tuple|UInt|UInt8|UInt16|UInt32|UInt64|Variant|VariadicList|VariadicPack)$"))
+ (#match? @type.builtin "^(AnyType|Arc|Array|Atomic|BFloat16|Bool|Byte|CollectionElement|CollectionElementNew|Comparable|Copyable|Defaultable|Deinitable|DType|Dict|DynamicVector|EqualityComparable|Error|ExplicitlyCopyable|FalseType|Float16|Float32|Float64|Float8|FloatLiteral|Hashable|Identifiable|ImmutableOrigin|ImplicitlyCopyable|Index|InlineArray|Int|Int8|Int16|Int32|Int64|IntLiteral|KeyElement|List|Movable|MutableOrigin|MutUntrackedOrigin|NoneType|Object|OpaquePointer|Optional|Pointer|PyObjectPtr|Python|PythonObject|Representable|Scalar|Self|Set|SIMD|Span|StaticTuple|String|StringLiteral|StringSlice|Tuple|UInt|UInt8|UInt16|UInt32|UInt64|UnsafePointer|Variant|VariadicList|VariadicPack|Writable)$"))
 
 ((identifier) @constructor
  (#match? @constructor "^[A-Z]"))
@@ -22,27 +22,22 @@
 
 ; Builtin functions
 
-; Audited against Mojo stdlib tag mojo/v1.0.0b1 (std/prelude/__init__.mojo).
-; Python-only names (exec, eval, callable, compile, vars, bool, int, float,
-; list, dict, set, str, tuple, ...) dropped — Mojo's equivalents are
-; capitalized types (Bool, Int, Float64, List, Dict, ...) and already match
-; the @constructor rule above. Lowercase Mojo-prelude callables retained;
-; idiomatic Mojo builtins (abort, debug_assert, external_call, ...) added.
+; Audited against Mojo stdlib (Mojo 1.0 / 1.1).
 ((call
   function: (identifier) @function.builtin)
  (#match?
    @function.builtin
-   "^(abort|abs|all|any|ascii|atof|atol|bin|breakpoint|chr|constrained|debug_assert|divmod|enumerate|external_call|hash|hex|input|iter|len|map|materialize|max|min|next|oct|open|ord|partition|pow|print|range|rebind|rebind_var|reflect|repr|reversed|round|slice|sort|swap|trait_downcast|trait_downcast_var|zip)$"))
+   "^(abort|abs|align_of|all|any|ascii|atof|atol|bin|bitcast|breakpoint|chr|conforms_to|constrained|debug_assert|divmod|enumerate|external_call|global_constant|has_trait|hash|hex|input|iter|len|map|materialize|max|min|next|oct|open|ord|parallelize|partition|pow|print|range|rebind|rebind_var|reflect|repr|reversed|round|simd_width|size_of|slice|sort|swap|trait_downcast|trait_downcast_var|type_of|unroll|unsafe_bitcast|unsafe_memcpy|vectorize|zip)$"))
 
 ; Mojo built-in decorators (recognized before the generic @function below)
 
 ((decorator
   (identifier) @attribute.builtin)
- (#match? @attribute.builtin "^(fieldwise_init|register_passable|parameter|value|always_inline|noinline|staticmethod|nonmaterializable)$"))
+ (#match? @attribute.builtin "^(always_inline|export|fieldwise_init|implicit|noinline|nonmaterializable|parameter|pure|register_passable|staticmethod|unroll|value)$"))
 
 ((decorator
   (call function: (identifier) @attribute.builtin))
- (#match? @attribute.builtin "^(fieldwise_init|register_passable|parameter|value|always_inline|noinline|staticmethod|nonmaterializable)$"))
+ (#match? @attribute.builtin "^(always_inline|export|fieldwise_init|implicit|noinline|nonmaterializable|parameter|pure|register_passable|staticmethod|unroll|value)$"))
 
 ; Function calls
 
@@ -159,6 +154,7 @@
 [
   "fn"
   "var"
+  "let"
   "struct"
   "trait"
   "alias"

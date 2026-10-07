@@ -11,3 +11,9 @@
   body: (block) @class.inside) @class.around
 
 (comment)+ @comment.around
+
+(parameters
+  (_)* @parameter.inside) @parameter.around
+
+(argument_list
+  (_)* @parameter.inside) @parameter.around

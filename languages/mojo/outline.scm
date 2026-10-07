@@ -13,5 +13,8 @@
 (alias_declaration
   name: (identifier) @name) @item
 
+(comptime_declaration
+  name: (identifier) @name) @item
+
 (variable_declaration
   name: (identifier) @name) @item

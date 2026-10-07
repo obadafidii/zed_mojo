@@ -1,9 +1,9 @@
 id = "mojo"
 name = "Mojo"
-version = "0.0.1"
+version = "0.1.0"
 schema_version = 1
 authors = ["Vadim Suharnikov"]
-description = "Mojo language support for Zed"
+description = "Supercharged Mojo language support for Zed with intelligent LSP detection, modern syntax, snippets, and tasks"
 repository = "https://github.com/vadim-su/zed_mojo"
 snippets = ["./snippets/mojo.json"]
 

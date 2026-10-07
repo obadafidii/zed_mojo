@@ -39,3 +39,5 @@
 (finally_clause) @start.finally
 
 (case_clause) @start.case
+
+(comptime_statement) @start.comptime

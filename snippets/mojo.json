@@ -139,9 +139,16 @@
   "Alias": {
     "prefix": "alias",
     "body": [
-      "alias ${1:Name} = ${2:Value}"
+      "comptime ${1:Name} = ${2:Value}"
     ],
-    "description": "Create a Mojo alias"
+    "description": "Create a Mojo alias (using comptime)"
+  },
+  "Comptime constant": {
+    "prefix": "comptime",
+    "body": [
+      "comptime ${1:Name} = ${2:Value}"
+    ],
+    "description": "Create a Mojo compile-time constant or type alias"
   },
   "Variable": {
     "prefix": "var",
@@ -241,6 +248,53 @@
     ],
     "description": "Create a Mojo Dict value"
   },
+  "Array value": {
+    "prefix": "array",
+    "body": [
+      "var ${1:items} = Array[${2:Type}, ${3:size}]($0)"
+    ],
+    "description": "Create a Mojo Array value"
+  },
+  "InlineArray value": {
+    "prefix": "inlinearray",
+    "body": [
+      "var ${1:items} = InlineArray[${2:Type}, ${3:size}]($0)"
+    ],
+    "description": "Create a stack-allocated InlineArray"
+  },
+  "Span slice": {
+    "prefix": "span",
+    "body": [
+      "var ${1:view} = Span(${2:items})"
+    ],
+    "description": "Create a non-owning Span view"
+  },
+  "SIMD vector": {
+    "prefix": "simd",
+    "body": [
+      "var ${1:vec} = SIMD[DType.${2:float32}, ${3:4}]($0)"
+    ],
+    "description": "Create a SIMD vector"
+  },
+  "Python import": {
+    "prefix": "pyimport",
+    "body": [
+      "from std.python import Python",
+      "",
+      "var ${1:np} = Python.import_module(\"${2:numpy}\")"
+    ],
+    "description": "Import a Python module using std.python"
+  },
+  "Value struct": {
+    "prefix": "valuestruct",
+    "body": [
+      "@value",
+      "struct ${1:Name}:",
+      "    var ${2:field}: ${3:Type}",
+      "    $0"
+    ],
+    "description": "Create a Mojo struct decorated with @value"
+  },
   "Test function": {
     "prefix": "test",
     "body": [
@@ -248,5 +302,19 @@
       "    $0"
     ],
     "description": "Create a Mojo test function"
+  },
+  "Assert equal": {
+    "prefix": "assert_eq",
+    "body": [
+      "assert_equal(${1:actual}, ${2:expected})"
+    ],
+    "description": "Assert equality in Mojo tests"
+  },
+  "Assert true": {
+    "prefix": "assert_true",
+    "body": [
+      "assert_true(${1:condition})"
+    ],
+    "description": "Assert truthiness in Mojo tests"
   }
 }
